@@ -1,0 +1,28 @@
+[package]
+name = "pumpfun_sniper_bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+solana-sdk = "1.18"
+solana-client = "1.18"
+spl-token = "4.0"
+spl-associated-token-account = "2.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+futures-util = "0.3"
+tokio-tungstenite = { version = "0.20", features = ["tls"] }
+ratatui = "0.26"
+crossterm = { version = "0.27", features = ["event"] }
+bs58 = "0.5"
+rand = "0.8"
+chrono = "0.4"
+url = "2.5"
+
+[profile.release]
+opt-level = 'z'     # Optimize for size, minimizes RAM spikes during compilation on 1GB VMs
+codegen-units = 1   # Single codegen unit reduces compiler memory usage
+panic = 'abort'     # Abort on panic to keep binary footprint minimal and fast
+lto = true          # Enable Link Time Optimization (LTO)
